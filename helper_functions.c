@@ -89,7 +89,15 @@ int _execute(char **argv)
   cpid = fork();
   if (cpid == 0)
     {
-  if (execve(argv[0], argv, NULL) == -1)
-   
+      if (execve(argv[0], argv, NULL) == -1)
+	{
+	  perror("Error");
+	}
+	  exit(EXIT_FAILURE);
     }
+  else if (cpid < 0)
+      perror("Error");
+  else
+    wait(&status);
+  return (1);
 }
