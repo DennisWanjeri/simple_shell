@@ -86,8 +86,8 @@ int _execute(char **argv)
   pid_t cpid;
   int status;
 
-  if (_strcmp("exit", argv[0]) == 0)
-    return (-1);
+  if (_strcmp(argv[0], "exit") == 0)
+    exit(0);
 
   cpid = fork();
   if (cpid == 0)
