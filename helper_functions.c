@@ -83,7 +83,13 @@ int check_file_status(char *filename)
  */
 int _execute(char **argv)
 {
-	if (execve(argv[0], argv, NULL) == -1)
-		return (-1);
-	return (0);
+  pid_t cpid;
+  int status;
+
+  cpid = fork();
+  if (cpid == 0)
+    {
+  if (execve(argv[0], argv, NULL) == -1)
+   
+    }
 }
