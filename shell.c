@@ -8,9 +8,8 @@
  */
 int main(int argc, char **argv)
 {
-	char *buffer;
-	char **tokens;
-	size_t bufflen = BUFSIZ;
+	char *line;
+	char **tokens;;
 	int response, isPipe = 0;
 	/*check whether only the commands are typed*/
 	/*no other arguments*/
@@ -19,7 +18,7 @@ int main(int argc, char **argv)
 	    if (execve(argv[1], argv, NULL) == -1)
 	      {
 		perror("Error");
-		exit(-1);
+		exit(98);
 	      }
 	    return (0);
 	  }
@@ -31,9 +30,8 @@ int main(int argc, char **argv)
 	      _print("cisfun$ ");
 	    }
 
-	  getline(&buffer, &bufflen, stdin);
-	  buffer[_strlen(buffer) - 1] = '\0';
-	  tokens = _strtotokens(buffer);
+	  line = read_line();
+	  tokens = _strtotokens(line);
 	  response = _execute(tokens);
 	} while (isPipe && response != -1);
 

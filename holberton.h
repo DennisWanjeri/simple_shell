@@ -23,5 +23,5 @@ char **_strtotokens(char *str);
 int _strcmp(char *s1, char *s2);
 
 int check_file_status(char *filename);
-
+char *read_line(void);
 #endif /*HOLBERTON_H*/
