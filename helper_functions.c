@@ -86,6 +86,9 @@ int _execute(char **argv)
   pid_t cpid;
   int status;
 
+  if (_strcmp("exit", argv[0]) == 0)
+    return (-1);
+
   cpid = fork();
   if (cpid == 0)
     {
@@ -93,7 +96,7 @@ int _execute(char **argv)
 	{
 	  perror("Error");
 	}
-	  exit(EXIT_FAILURE);
+	  exit(-1);
     }
   else if (cpid < 0)
       perror("Error");
