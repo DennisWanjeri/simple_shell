@@ -91,17 +91,19 @@ int _execute(char **argv)
     return (-1);
 
   cpid = fork();
+/*child process*/
   if (cpid == 0)
     {
       if (execve(argv[0], argv, NULL) == -1)
 	{
-	  perror("Error");
+	  perror("Error in execution");
 	}
 	  exit(-1);
     }
   else if (cpid < 0)
       perror("Error");
   else
+/*parent process*/
     wait(&status);
   return (1);
 }
