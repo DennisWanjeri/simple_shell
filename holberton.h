@@ -28,5 +28,6 @@ char *read_line(void);
 int shell_exit(char **args);
 int shell_cd(char **args);
 int shell_help(char **args);
+int shell_environ(void);
 
 #endif /*HOLBERTON_H*/

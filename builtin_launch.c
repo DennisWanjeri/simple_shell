@@ -39,3 +39,14 @@ int shell_cd(char **args)
 	}
 	return (1);
 }
+int shell_environ(void)
+{
+	extern char **environ;
+	int i, j;
+
+	for (; *environ; *environ++)
+	{
+		printf("%s\n", *environ);
+	}
+	return (1);
+}
