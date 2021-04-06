@@ -24,4 +24,9 @@ int _strcmp(char *s1, char *s2);
 
 int check_file_status(char *filename);
 char *read_line(void);
+/*builtin implementation*/
+int shell_exit(char **args);
+int shell_cd(char **args);
+int shell_help(char **args);
+
 #endif /*HOLBERTON_H*/
