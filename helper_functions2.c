@@ -35,7 +35,7 @@ char *read_line(void)
 	{
 /*read a character*/
 		cha = getchar();
-/*handling End of File where we replace it with newline char*/
+/*handling End of File or EOF  where we replace it with nullbyte char*/
 		if (cha == EOF || cha == '\n')
 		{
 			buffer[index] = '\0';
