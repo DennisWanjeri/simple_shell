@@ -6,6 +6,8 @@
  */
 int shell_exit(char **args)
 {
+	free(args);
+	exit(1);
 	return (0);
 }
 /**
@@ -23,6 +25,11 @@ int shell_help(char **args)
 	printf("Explore the manpage to know about other programs\n");
 	return (1);
 }
+/**
+ *shell_cd - changes directory when cd is invoked
+ *@args:strings of arguements
+ *Return:1 on success
+ */
 int shell_cd(char **args)
 {
 /*when a user presses cd only -> home directory*/
@@ -39,6 +46,11 @@ int shell_cd(char **args)
 	}
 	return (1);
 }
+/**
+ *shell_environ - prints environment variables when env is invoked
+ *
+ *Return:1 on success
+ */
 int shell_environ(void)
 {
 	extern char **environ;
