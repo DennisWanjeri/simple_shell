@@ -24,7 +24,8 @@ unsigned int _occurence(char *s)
 
   for (i = 0; s[i] != '\0'; i++)
     {
-      if (s[i]  == ' ')
+/*test for all delimeters*/
+      if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\n' || s[i] == '\a')
 	cnt++;
     }
 
@@ -39,7 +40,7 @@ unsigned int _occurence(char *s)
 char **_strtotokens(char *str)
 {
   int i = 0;
-  const char separator[] = " ";
+  const char separator[] = " \t\n\r\a";
   int spaces = _occurence(str);
   char **tokens = malloc(sizeof(char *) * (spaces + 1));
   char *token;
@@ -90,17 +91,19 @@ int _execute(char **argv)
     exit(0);
 
   cpid = fork();
+/*child process*/
   if (cpid == 0)
     {
       if (execve(argv[0], argv, NULL) == -1)
 	{
-	  perror("Error");
+	  perror("Error in execution");
 	}
 	  exit(-1);
     }
   else if (cpid < 0)
       perror("Error");
   else
+/*parent process*/
     wait(&status);
   return (1);
 }
