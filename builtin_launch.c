@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  *shell_exit - terminates a shell
  *@args:array of strings
@@ -19,7 +20,7 @@ int shell_help(char **args)
 {
 	int i = 0;
 
-	printf("cisfun$\n");
+	printf("#cisfun$\n");
 	printf("Type program names and their arguements then press enter\n");
 	printf("Builtin commands:\n cd\nhelp\n\exit\n");
 	printf("Explore the manpage to know about other programs\n");
