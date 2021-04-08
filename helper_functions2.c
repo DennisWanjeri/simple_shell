@@ -57,3 +57,18 @@ char *read_line(void)
 		}
 	}
 }
+/**
+ *free_args - frees a two dimensional string
+ *@args:array of pointers to strings
+ *Return:void
+ */
+void free_args(char **args)
+{
+	int i = 0;
+
+	for (i = 0; args[i]; i++)
+	{
+		free(args[i]);
+	}
+	free(args);
+}
