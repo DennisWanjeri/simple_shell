@@ -8,9 +8,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 int main(int argc, char **argv);
-
+/*handling ctrl + c signal*/
+void sigint_handler(int signum);
 /*print string content*/
 int _putchar(char c);
 void _print(char *str);
