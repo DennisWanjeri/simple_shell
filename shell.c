@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	  if (isatty(fileno(stdin)))
 	    {
 	      isPipe = 1;
-	      _print("cisfun$ ");
+	      _print("#cisfun$ ");
 	    }
 
 	  line = read_line();

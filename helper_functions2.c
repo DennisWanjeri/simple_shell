@@ -1,22 +1,10 @@
 #include "holberton.h"
 
 /**
- *_strcmp - compares strings
- *@s1: string character
- *@s2: string character
- *Return: a pointer to string
+ *read_line - reads characters in stdin
+ *
+ *Return: nothing
  */
-int _strcmp(char *s1, char *s2)
-{
-  int i = 0;
-  while (s1[i] != '\0' || s2[i] != '\0')
-    {
-      if (s1[i] != s2[i])
-	return (s1[i] - s2[i]);
-      i++;
-    }
-  return (0);
-}
 char *read_line(void)
 {
 	int buffsize = 1024;
@@ -56,4 +44,19 @@ char *read_line(void)
 			{dprintf(STDERR_FILENO, "error in memory allocation\n"), exit(98);}
 		}
 	}
+}
+/**
+ *free_args - frees a two dimensional string
+ *@args:array of pointers to strings
+ *Return:void
+ */
+void free_args(char **args)
+{
+	int i = 0;
+
+	for (i = 0; args[i]; i++)
+	{
+		free(args[i]);
+	}
+	free(args);
 }
