@@ -1,16 +1,4 @@
 #include "holberton.h"
-
-/**
- *shell_exit - terminates a shell
- *@args:array of strings
- *Return:0 on success
- */
-int shell_exit(char **args)
-{
-	free(args);
-	exit(1);
-	return (0);
-}
 /**
  *shell_help - implements builtin help
  *@args:array of strings
@@ -24,27 +12,6 @@ int shell_help(char **args)
 	printf("Type program names and their arguements then press enter\n");
 	printf("Builtin commands:\n cd\nhelp\n\exit\n");
 	printf("Explore the manpage to know about other programs\n");
-	return (1);
-}
-/**
- *shell_cd - changes directory when cd is invoked
- *@args:strings of arguements
- *Return:1 on success
- */
-int shell_cd(char **args)
-{
-/*when a user presses cd only -> home directory*/
-	if (args[1] == NULL)
-	{
-		chdir("/root");
-	}
-	else
-	{
-		if (chdir(args[1]) != 0)
-		{
-			perror("Error: Can't change directory");
-		}
-	}
 	return (1);
 }
 /**
