@@ -31,7 +31,10 @@ char *read_line(void);
 /*builtin implementation*/
 int shell_exit(char **args);
 int shell_help(char **args);
-int shell_cd(char **args);
 int shell_environ(void);
+/*cd_handler*/
+int _cd(char **args);
+int cd_home(void);
+int cd_prev(void);
 
 #endif /*HOLBERTON_H*/
