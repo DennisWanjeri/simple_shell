@@ -8,5 +8,5 @@ void ctrl_c(int signum)
 {
 	void(signum);
 	signal(SIGINT, sigint_handler);
-	write(STDIN_FILENO, "/n^C ", 3);
+	write(STDIN_FILENO, "\n#cisfun$ ", 3);
 }
