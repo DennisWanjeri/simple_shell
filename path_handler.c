@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  *get_path - gets the absolute path of a command
  *@args:pointer to an array of strings
@@ -20,8 +21,8 @@ char *get_path(char **args)
 	i = 0;
 	while (token)
 	{
-		slash_token = str_concat(token, "/");
-		cmd_token = str_concat(slash_token, args[0]);
+		slash_token = _strcat(token, "/");
+		cmd_token = _strcat(slash_token, args[0]);
 		free(slash_token);
 		if (stat(cmd_token, &st) == 0)
 		{
