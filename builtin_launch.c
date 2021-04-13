@@ -8,10 +8,10 @@ int shell_help(char **args)
 {
 	int i = 0;
 
-	printf("#cisfun$\n");
-	printf("Type program names and their arguements then press enter\n");
-	printf("Builtin commands:\n cd\nhelp\n\exit\n");
-	printf("Explore the manpage to know about other programs\n");
+	_print("#cisfun$\n");
+	_print("Type program names and their arguements then press enter\n");
+	_print("Builtin commands:\n cd\nhelp\n\exit\n");
+	_print("Explore the manpage to know about other programs\n");
 	return (1);
 }
 /**
