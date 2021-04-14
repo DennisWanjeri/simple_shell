@@ -9,7 +9,7 @@
 int main(void)
 {
 	char **tokens;
-	char *line;
+	char *line, *cmd;
 	int status;
 	struct stat st;
 
@@ -34,11 +34,13 @@ int main(void)
 		else
 		{
 /*execute commands*/
-			status = _execute(tokens, line);
+			cmd = get_path(tokens);
+			status = _execute(cmd, line);
 		}
 /*free memory*/
 		free(line);
 		free(tokens);
+		free(cmd);
 	} while (status == 1);
 	return (status);
 }
