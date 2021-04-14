@@ -3,7 +3,7 @@
  *read_line - reads user input from.stdin
  *Return:pointer to string
  */
-char *read_line(void)
+char *read_line2(void)
 {
 	char *input = NULL;
 	size_t len = 0;

@@ -25,6 +25,11 @@ int main(void)
 		}
 /*read input from stdin*/
 		line = read_line();
+		if (strcmp(line, "\n") == 0)
+		{
+			continue;
+			free(line);
+		}
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
 /*handle exit invokation*/
