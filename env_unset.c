@@ -11,7 +11,7 @@ int _unsetenv(char *var_name)
 	size_t name_len;
 
 	name_len = _strlen(var_name);
-	while(environ[i])
+	while (environ[i])
 	{
 		if (strncmp(environ[i], var_name, name_len) == 0)
 		{
@@ -20,7 +20,7 @@ int _unsetenv(char *var_name)
 			do {
 				env_temp[0] = env_temp[1];
 				env_temp++;
-			} while(*env_temp);
+			} while (*env_temp);
 		}
 		i++;
 	}

@@ -21,7 +21,7 @@ int get_path(char **args)
 			*args = strdup(cmd_token);
 			free(cmd_token);
 			free(path);
-			return(0);
+			return (0);
 		}
 		free(cmd_token);
 		token = strtok(NULL, ":");
@@ -31,7 +31,7 @@ int get_path(char **args)
 }
 /**
  *get_env - retrieves an environment variable
- *@args:variable passed
+ *@path:variable passed
  *Return:pointer to a string
  */
 char *get_env(char *path)
@@ -46,17 +46,17 @@ char *get_env(char *path)
 /*locate substring PATH*/
 		if (strstr(environ[i], path))
 		{
-			if(environ[i][len] == '=')
+			if (environ[i][len] == '=')
 			{
 				len2 = _strlen(environ[i]) - _strlen(path);
 				envcpy = malloc(sizeof(char) * len2);
-				if(envcpy == NULL)
+				if (envcpy == NULL)
 				{
 					perror("Error: Insufficient memory");
 					exit(1);
 				}
 				strcpy(envcpy, environ[i] + (len + 1));
-				return(envcpy);
+				return (envcpy);
 			}
 		}
 		i++;

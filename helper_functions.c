@@ -7,10 +7,11 @@
  */
 int _strlen(const char *s)
 {
-int i;
-for (i = 0; s[i] != '\0'; i++)
-;
-return (i);
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+		;
+	return (i);
 }
 
 /**
@@ -20,18 +21,17 @@ return (i);
  */
 unsigned int _occurence(char *s)
 {
-  int i, cnt = 0;
+	int i, cnt = 0;
 
-  for (i = 0; s[i] != '\0'; i++)
-    {
-/*test for all delimeters*/
-      if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\n' || s[i] == '\a')
-	cnt++;
-    }
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		/*test for all delimeters*/
+		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\a')
+			cnt++;
+	}
 
-  return (cnt);
+	return (cnt);
 }
-
 /**
  *_strtotokens - split a sentence into multiple words.
  *@str: the string passed as argument.
@@ -39,31 +39,30 @@ unsigned int _occurence(char *s)
  */
 char **_strtotokens(char *str)
 {
-  int i = 0;
-  const char separator[] = " \t\n\r\a";
-  int spaces = _occurence(str);
-  char **tokens = malloc(sizeof(char *) * (spaces + 1));
-  char *token;
+	int i = 0;
+	const char separator[] = " \t\n\r\a";
+	int spaces = _occurence(str);
+	char **tokens = malloc(sizeof(char *) * (spaces + 1));
+	char *token;
 
-  if (!tokens)
-    {
-      fprintf(stderr, "sh: allocation error\n");
-      exit(1);
-    }
+	if (!tokens)
+	{
+		fprintf(stderr, "sh: allocation error\n");
+		exit(1);
+	}
 
-  token = strtok(str, separator);
+	token = strtok(str, separator);
 
-  while (token != NULL)
-    {
-      tokens[i] = token;
-      token = strtok(NULL, separator);
-      i++;
-    }
-  tokens[i] = NULL;
+	while (token != NULL)
+	{
+		tokens[i] = token;
+		token = strtok(NULL, separator);
+		i++;
+	}
+	tokens[i] = NULL;
 
-  return (tokens);
+	return (tokens);
 }
-
 /**
  *check_file_status - checks whether a file exists
  *@filename:name of file
@@ -85,39 +84,38 @@ int check_file_status(char *filename)
  */
 int _execute(char **tokens, char *line)
 {
-  pid_t cpid;
-  int status;
-  struct stat st;
+	pid_t cpid;
+	int status;
+	struct stat st;
 
-/*handle when token is a builtin cmd or NULL*/
-  if (builtin_parser(tokens) == 0 || *tokens == NULL)
-  {
-	  return (1);
-  }
-/*fork the process*/
-  cpid = fork();
-  if (cpid < 0)
-  {
-	  perror("Error:fork->-1");
-	  return (EXIT_FAILURE);
-  }
+	/*handle when token is a builtin cmd or NULL*/
+	if (builtin_parser(tokens) == 0 || *tokens == NULL)
+	{
+		return (1);
+	}
+	/*fork the process*/
+	cpid = fork();
+	if (cpid < 0)
+	{
+		perror("Error:fork->-1");
+		return (EXIT_FAILURE);
+	}
 /*child process*/
-  if (cpid == 0)
-  {
-	  if (stat(*tokens, &st) != 0)
-	  {
-		  get_path(tokens);
-	  }
-	  if (execve(tokens[0], tokens, NULL) == -1)
-	  {
-		  perror("Error in execution");
-		  free(line);
-		  free(tokens);
-		  exit(EXIT_FAILURE);
-	  }
-	  return (EXIT_SUCCESS);
-  }
-/*parent process*/
-  wait(&status);
-  return (1);
+	if (cpid == 0)
+	{
+		if (stat(*tokens, &st) != 0)
+		{
+			get_path(tokens);
+		}
+		if (execve(tokens[0], tokens, NULL) == -1)
+		{
+			perror("Error in execution");
+			free(line);
+			free(tokens);
+			exit(EXIT_FAILURE);
+		}
+		return (EXIT_SUCCESS);
+	}
+wait(&status);
+return (1);
 }
