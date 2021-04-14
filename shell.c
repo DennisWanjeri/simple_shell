@@ -2,8 +2,6 @@
 
 /**
  *main - Displays a prompt and waits for the user to enter a command
- *@argc: arguement count
- *@argv: arguement vector
  *Return: 0 on success
  */
 int main(void)
