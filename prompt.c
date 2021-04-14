@@ -9,7 +9,7 @@ void print_prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		_print("#cisfun$");
+		_print("#cisfun$ ");
 	}
 }
 

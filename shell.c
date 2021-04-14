@@ -6,34 +6,39 @@
  *@argv: arguement vector
  *Return: 0 on success
  */
-int main(int argc, char **argv)
+int main(void)
 {
+	char **tokens;
 	char *line;
-	char **tokens;;
-	int response, isPipe = 0;
-	/*check whether only the commands are typed*/
-	/*no other arguments*/
-	if (argc >= 2)
-	  {
-	    if (execve(argv[1], argv, NULL) == -1)
-	      {
-		perror("Error");
-		exit(98);
-	      }
-	    return (0);
-	  }
-	/*then print prompt '#cisfun$'*/
+	int status;
+	struct stat st;
+
+	if (fstat(0, &st) == -1)
+		perror("fstat");
+	status = 1;
 	do {
-	  if (isatty(fileno(stdin)))
-	    {
-	      isPipe = 1;
-	      _print("#cisfun$ ");
-	    }
-
-	  line = read_line();
-	  tokens = _strtotokens(line);
-	  response = _execute(tokens);
-	} while (isPipe && response != -1);
-
-	return (0);
+/*print prompt if command is not piped*/
+		if (!S_ISFIFO(st.st_mode))
+		{
+			print_prompt();
+		}
+/*read input from stdin*/
+		line = read_line();
+/*split the line into tokens*/
+		tokens = _strtotokens(line);
+/*handle exit invokation*/
+		if (strcmp(tokens[0], "exit") == 0)
+		{
+			shell_exit(tokens, line);
+		}
+		else
+		{
+/*execute commands*/
+			status = _execute(tokens, line);
+		}
+/*free memory*/
+		free(line);
+		free(tokens);
+	} while (status == 1);
+	return (status);
 }
