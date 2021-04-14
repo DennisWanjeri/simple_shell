@@ -5,7 +5,7 @@
  *
  *Return: nothing
  */
-char *read_line2(void)
+char *read_line(void)
 {
 	int buffsize = 1024;
 	int index = 0;
@@ -18,16 +18,26 @@ char *read_line2(void)
 		dprintf(STDERR_FILENO, "memory allocation error\n");
 		exit(98);
 	}
+	cha = getchar();
+	if (cha == '\n' || cha == EOF)
+	{
+		*buffer = '\n';
+		return (buffer);
+	}
+	else
+	{
+		buffer[index] = cha;
+	}
 /*apparently infinite loop*/
-
+	index = 1;
 	while (1)
 	{
 /*read a character*/
 		cha = getchar();
 /*handling End of File or EOF  where we replace it with nullbyte char*/
-		if (cha == EOF || cha == '\n')
+		if (cha == '\n' || cha == EOF)
 		{
-			buffer = '\0';
+			buffer[index] = '\0';
 			return (buffer);
 		}
 /*else we write the character read to buffer*/

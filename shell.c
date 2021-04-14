@@ -2,8 +2,6 @@
 
 /**
  *main - Displays a prompt and waits for the user to enter a command
- *@argc: arguement count
- *@argv: arguement vector
  *Return: 0 on success
  */
 int main(void)
@@ -25,6 +23,11 @@ int main(void)
 		}
 /*read input from stdin*/
 		line = read_line();
+		if (strcmp(line, "\n") == 0)
+		{
+			continue;
+			free(line);
+		}
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
 /*handle exit invokation*/
