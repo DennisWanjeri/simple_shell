@@ -51,7 +51,7 @@ int cd_home(void)
  */
 int cd_prev(void)
 {
-	char *prev, cwd;
+	char *prev, *cwd;
 
 /*get cwd then set OLDPWD to its value*/
 	cwd = _getcwd();
@@ -63,7 +63,7 @@ int cd_prev(void)
 	_setenv("OLDPWD", cwd);
 	free(cwd);
 
-	cwd = _getcwd;
+	cwd = _getcwd();
 	_setenv("PWD", cwd);
 	free(cwd);
 

@@ -3,6 +3,7 @@
  *print_history - prints a numbered account of recent commands entered by user
  *Return:void
  */
+/*
 void print_history(void)
 {
 	int i = 0;
@@ -19,12 +20,13 @@ void print_history(void)
 			printf("%d %s\n",i, hist[i]);
 		}
 	}
-}
+	}*/
 /**
  *add_command_to_history - adds a command to history
  *@command:command to add to history
  *Return:void
  */
+/*
 void add_command_to_history(const char *command)
 {
 	unsigned int history_count = 0;
@@ -39,3 +41,4 @@ void add_command_to_history(const char *command)
 		for (i = 1; i < HIST_MAX_SIZE; i++)
 		{
 
+*/

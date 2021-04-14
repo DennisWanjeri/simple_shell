@@ -14,14 +14,14 @@ char *get_path(char **args)
 		return (NULL);
 /*when user inputs full path e.g /bin/ls*/
 	if(stat(args[0], &st) == 0)
-		return (argv[0]);
+		return (args[0]);
 	path = get_env("PATH");
 	token = strtok(path, ":");
 
 	while (token)
 	{
-		slash_token = _strcat(token, "/");
-		cmd_token = _strcat(slash_token, args[0]);
+		slash_token = strcat(token, "/");
+		cmd_token = strcat(slash_token, args[0]);
 		free(slash_token);
 		if (stat(cmd_token, &st) == 0)
 		{
@@ -31,7 +31,7 @@ char *get_path(char **args)
 			return(args[0]);
 		}
 		free(cmd_token);
-		token = (NULL, ":");
+		token = strtok(NULL, ":");
 	}
 	free(path);
 	return (NULL);
@@ -51,18 +51,18 @@ char *get_env(char *path)
 	{
 		len = _strlen(path);
 /*locate substring PATH*/
-		if (_strstr(environ[i], path))
+		if (strstr(environ[i], path))
 		{
 			if(environ[i][len] == '=')
 			{
 				len2 = _strlen(environ[i]) - _strlen(path);
 				envcpy = malloc(sizeof(char) * len2);
-				if(envcpy = NULL)
+				if(envcpy == NULL)
 				{
 					perror("Error: Insufficient memory");
 					exit(1);
 				}
-				_strcpy(envcpy, environ[i] + (len + 1));
+				strcpy(envcpy, environ[i] + (len + 1));
 				return(envcpy);
 			}
 		}

@@ -6,6 +6,7 @@
  */
 int _unsetenv(char *var_name)
 {
+	int i = 0;
 	char **env_temp;
 	size_t name_len;
 
@@ -14,7 +15,7 @@ int _unsetenv(char *var_name)
 	{
 		if (strncmp(environ[i], var_name, name_len) == 0)
 		{
-			env_temp = environ[i];
+			env_temp = environ;
 			free(env_temp[0]);
 			do {
 				env_temp[0] = env_temp[1];

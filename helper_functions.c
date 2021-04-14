@@ -97,10 +97,8 @@ int _execute(char **tokens, char *line)
   cpid = fork();
 /*child process*/
   if (cpid == 0)
-    {
-	    tokens[0] = get_path(tokens);
-
-      if (execve(tokens[0], tokens, NULL) == -1)
+  {
+   if (execve(tokens[0], tokens, NULL) == -1)
 	{
 	  perror("Error in execution");
 	  free(line);
@@ -111,7 +109,7 @@ int _execute(char **tokens, char *line)
     }
   else if (cpid < 0)
   {
-	  perror(Error:fork->-1);
+	  perror("Error:fork->-1");
 	  return (EXIT_FAILURE);
   }
 /*parent process*/

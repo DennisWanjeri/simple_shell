@@ -7,9 +7,10 @@
  *@env: environmental variable linked list
  *Return: nothing
  */
+/*
 void ctrl_D(int i, char *command, list_t *env)
 {
-  if (i == 0)/*handle Ctrl_D*/
+  if (i == 0)
     {
       free(command);
       free(env);
@@ -18,3 +19,4 @@ void ctrl_D(int i, char *command, list_t *env)
       exit(0);
     }
 }
+*/

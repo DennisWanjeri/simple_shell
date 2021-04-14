@@ -9,7 +9,7 @@ void shell_exit(char **args, char *line)
 {
 	int status = 0;
 
-	if (args[i] != NULL)
+	if (args[1] != NULL)
 	{
 		status = atoi(args[1]);
 		if (status >= 0)

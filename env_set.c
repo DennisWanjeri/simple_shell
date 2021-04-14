@@ -16,7 +16,7 @@ int _setenv(char *var_name, char *var_value)
 /*updating an existing variable*/
 	while (environ[i])
 	{
-		if(strcmp(environ[i], var_name, name_len) == 0)
+		if(strncmp(environ[i], var_name, name_len) == 0)
 		{
 			var_new = var_build(var_name, var_value);
 /*Not sure but wanted to clear its mem b4 writing*/
