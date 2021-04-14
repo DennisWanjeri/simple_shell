@@ -5,7 +5,7 @@
  *
  *Return: nothing
  */
-char *read_line(void)
+char *read_line2(void)
 {
 	int buffsize = 1024;
 	int index = 0;
@@ -19,6 +19,7 @@ char *read_line(void)
 		exit(98);
 	}
 /*apparently infinite loop*/
+
 	while (1)
 	{
 /*read a character*/
@@ -26,7 +27,7 @@ char *read_line(void)
 /*handling End of File or EOF  where we replace it with nullbyte char*/
 		if (cha == EOF || cha == '\n')
 		{
-			buffer[index] = '\0';
+			buffer = '\0';
 			return (buffer);
 		}
 /*else we write the character read to buffer*/
