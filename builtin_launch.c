@@ -21,8 +21,6 @@ int shell_help(char **args)
  */
 int shell_environ(void)
 {
-	extern char **environ;
-	int i, j;
 
 	for (; *environ; *environ++)
 	{

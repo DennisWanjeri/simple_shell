@@ -79,31 +79,42 @@ int check_file_status(char *filename)
 }
 /**
  *_execute - executes a file given as input
- *@argv:an array of pointers to strings
+ *@tokens:split tokens from stdin input
+ *@line:line from stdin to free
  *Return:-1 (success), -1,otherwise
  */
-int _execute(char **argv)
+int _execute(char **tokens, char *line)
 {
   pid_t cpid;
   int status;
 
-  if (_strcmp(argv[0], "exit") == 0)
-    exit(0);
-
+/*handle when token is a builtin cmd or NULL*/
+  if (builtin_parser(tokens) == 0 || *tokens == NULL)
+  {
+	  return (1);
+  }
+/*fork the process*/
   cpid = fork();
 /*child process*/
   if (cpid == 0)
     {
-      if (execve(argv[0], argv, NULL) == -1)
+	    tokens[0] = get_path(tokens);
+
+      if (execve(tokens[0], tokens, NULL) == -1)
 	{
 	  perror("Error in execution");
+	  free(line);
+	  free(tokens);
+	  exit(EXIT_FAILURE);
 	}
-	  exit(-1);
+      return (EXIT_SUCCESS);
     }
   else if (cpid < 0)
-      perror("Error");
-  else
+  {
+	  perror(Error:fork->-1);
+	  return (EXIT_FAILURE);
+  }
 /*parent process*/
-    wait(&status);
+  wait(&status);
   return (1);
 }

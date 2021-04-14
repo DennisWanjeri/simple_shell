@@ -7,18 +7,17 @@
  */
 char *get_path(char **args)
 {
-	int i = 0;
 	char *path = NULL, *token = NULL, *slash_token = NULL, *cmd_token = NULL;
 	struct stat st;
 
 	if (args == NULL)
 		return (NULL);
 /*when user inputs full path e.g /bin/ls*/
-	if(stat(argv[0], &st) == 0)
+	if(stat(args[0], &st) == 0)
 		return (argv[0]);
 	path = get_env("PATH");
 	token = strtok(path, ":");
-	i = 0;
+
 	while (token)
 	{
 		slash_token = _strcat(token, "/");
@@ -26,16 +25,15 @@ char *get_path(char **args)
 		free(slash_token);
 		if (stat(cmd_token, &st) == 0)
 		{
-			_strcpy(args[0], cmd_token);
+			args[0] = strdup(cmd_token);
 			free(cmd_token);
 			free(path);
 			return(args[0]);
 		}
 		free(cmd_token);
 		token = (NULL, ":");
-		i++;
 	}
-	path = NULL;
+	free(path);
 	return (NULL);
 }
 /**
@@ -43,7 +41,7 @@ char *get_path(char **args)
  *@args:variable passed
  *Return:pointer to a string
  */
-char *get_env(char *args)
+char *get_env(char *path)
 {
 	char *envcpy = NULL;
 	int i = 0;
