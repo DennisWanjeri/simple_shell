@@ -13,6 +13,7 @@ int main(void)
 	int status;
 	struct stat st;
 
+	signal(SIGINT, ctrl_c);
 	if (fstat(0, &st) == -1)
 		perror("fstat");
 	status = 1;
