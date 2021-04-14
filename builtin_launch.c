@@ -4,16 +4,16 @@
  *@args:array of strings
  *Return:1
  */
+/*
 int shell_help(char **args)
 {
-	int i = 0;
-
-	_print("#cisfun$\n");
-	_print("Type program names and their arguements then press enter\n");
-	_print("Builtin commands:\n cd\nhelp\n\exit\n");
-	_print("Explore the manpage to know about other programs\n");
-	return (1);
-}
+void(args);
+printf("#cisfun$\n");
+printf("Type program names and their arguements then press enter\n");
+printf("Builtin commands:/n cd/nhelp/n/exit/n");
+printf("Explore the manpage to know about other programs\n");
+return (1);
+}*/
 /**
  *shell_environ - prints environment variables when env is invoked
  *
@@ -21,12 +21,11 @@ int shell_help(char **args)
  */
 int shell_environ(void)
 {
-	extern char **environ;
-	int i, j;
+  int i = 0;
 
-	for (; *environ; *environ++)
-	{
-		printf("%s\n", *environ);
-	}
-	return (1);
+  for (i = 0; environ[i]; i++)
+    {
+      printf("%s\n", environ[i]);
+    }
+  return (1);
 }
