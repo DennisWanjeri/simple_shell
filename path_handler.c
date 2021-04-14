@@ -5,36 +5,29 @@
  *@args:pointer to an array of strings
  *Return:address of the path
  */
-char *get_path(char **args)
+int get_path(char **args)
 {
-	char *path = NULL, *token = NULL, *slash_token = NULL, *cmd_token = NULL;
+	char *path, *token, *cmd_token;
 	struct stat st;
 
-	if (args == NULL)
-		return (NULL);
-/*when user inputs full path e.g /bin/ls*/
-	if(stat(args[0], &st) == 0)
-		return (args[0]);
 	path = get_env("PATH");
 	token = strtok(path, ":");
 
-	while (token)
+	while (token != NULL)
 	{
-		slash_token = strcat(token, "/");
-		cmd_token = strcat(slash_token, args[0]);
-		free(slash_token);
+		cmd_token = cmd_build(*args, token);
 		if (stat(cmd_token, &st) == 0)
 		{
-			args[0] = strdup(cmd_token);
+			*args = strdup(cmd_token);
 			free(cmd_token);
 			free(path);
-			return(args[0]);
+			return(0);
 		}
 		free(cmd_token);
 		token = strtok(NULL, ":");
 	}
-	free(path);
-	return (NULL);
+	path = NULL;
+	return (1);
 }
 /**
  *get_env - retrieves an environment variable
@@ -43,7 +36,7 @@ char *get_path(char **args)
  */
 char *get_env(char *path)
 {
-	char *envcpy = NULL;
+	char *envcpy;
 	int i = 0;
 	int len, len2;
 
@@ -69,4 +62,30 @@ char *get_env(char *path)
 		i++;
 	}
 	return (NULL);
+}
+/**
+ *cmd_build - returns full cmd path
+ *@token:cmd passed
+ *@dir_value:current path dir
+ *Return:pointer to full cmd path
+ */
+char *cmd_build(char *token, char *dir_value)
+{
+	size_t path_len;
+	char *path;
+
+	path_len = _strlen(token) + _strlen(dir_value);
+	path = malloc(sizeof(char) * path_len);
+
+	if (path == NULL)
+	{
+		perror("Error: malloc->buildcmd\n");
+		return (NULL);
+	}
+	memset(path, 0, path_len);
+
+	path = strcat(path, dir_value);
+	path = strcat(path, "/");
+	path = strcat(path, token);
+	return (path);
 }

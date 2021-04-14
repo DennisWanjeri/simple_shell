@@ -29,7 +29,8 @@ unsigned int _occurence(char *s);
 char **_strtotokens(char *str);
 int check_file_status(char *filename);
 /*handling the path*/
-char *get_path(char **args);
+char *cmd_build(char *token, char *dir_value);
+int get_path(char **args);
 char *get_env(char *path);
 /*builtin parser*/
 int builtin_parser(char **tokens);

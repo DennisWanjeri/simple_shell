@@ -87,6 +87,7 @@ int _execute(char **tokens, char *line)
 {
   pid_t cpid;
   int status;
+  struct stat st;
 
 /*handle when token is a builtin cmd or NULL*/
   if (builtin_parser(tokens) == 0 || *tokens == NULL)
@@ -95,22 +96,26 @@ int _execute(char **tokens, char *line)
   }
 /*fork the process*/
   cpid = fork();
-/*child process*/
-  if (cpid == 0)
-  {
-   if (execve(tokens[0], tokens, NULL) == -1)
-	{
-	  perror("Error in execution");
-	  free(line);
-	  free(tokens);
-	  exit(EXIT_FAILURE);
-	}
-      return (EXIT_SUCCESS);
-    }
-  else if (cpid < 0)
+  if (cpid < 0)
   {
 	  perror("Error:fork->-1");
 	  return (EXIT_FAILURE);
+  }
+/*child process*/
+  if (cpid == 0)
+  {
+	  if (stat(*tokens, &st) != 0)
+	  {
+		  get_path(tokens);
+	  }
+	  if (execve(tokens[0], tokens, NULL) == -1)
+	  {
+		  perror("Error in execution");
+		  free(line);
+		  free(tokens);
+		  exit(EXIT_FAILURE);
+	  }
+	  return (EXIT_SUCCESS);
   }
 /*parent process*/
   wait(&status);
