@@ -26,6 +26,7 @@ int main(void)
 		if (strcmp(line, "\n") == 0)
 		{
 			continue;
+			tokens = NULL;
 			free(line);
 		}
 /*split the line into tokens*/

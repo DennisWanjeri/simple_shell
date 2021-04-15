@@ -63,10 +63,10 @@ int cd_prev(void)
 
 	prev = getenv("OLDPWD");
 	chdir(prev);
-	free(prev);
+	prev = NULL;
 
 	_setenv("OLDPWD", cwd);
-	free(cwd);
+	cwd = NULL;
 
 	cwd = _getcwd();
 	_setenv("PWD", cwd);

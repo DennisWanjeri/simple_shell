@@ -20,7 +20,7 @@ int _setenv(char *var_name, char *var_value)
 		{
 			var_new = var_build(var_name, var_value);
 /*Not sure but wanted to clear its mem b4 writing*/
-			free(environ[i]);
+			environ[i] = NULL;
 			environ[i] = strdup(var_new);
 			free(var_new);
 			return (0);
@@ -33,7 +33,7 @@ int _setenv(char *var_name, char *var_value)
 	environ[i] = strdup(var_new);
 	i++;
 	environ[i] = NULL;
-	free(var_new);
+	var_new = NULL;
 
 	return (0);
 }
