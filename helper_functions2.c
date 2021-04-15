@@ -5,7 +5,7 @@
  *
  *Return: nothing
  */
-char *read_line(void)
+char *read_line2(void)
 {
 	int buffsize = 1024, index = 0, cha;
 	char *buffer;

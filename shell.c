@@ -25,9 +25,9 @@ int main(void)
 		line = read_line();
 		if (strcmp(line, "\n") == 0)
 		{
-			continue;
 			tokens = NULL;
 			free(line);
+			continue;
 		}
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
