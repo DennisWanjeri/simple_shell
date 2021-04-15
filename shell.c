@@ -22,7 +22,7 @@ int main(void)
 			print_prompt();
 		}
 /*read input from stdin*/
-		line = read_line();
+		line = read_line2();
 		if (_strcmp(line, "\n") == 0)
 		{
 			tokens = NULL;
