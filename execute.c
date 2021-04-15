@@ -1,20 +1,6 @@
 #include "holberton.h"
 
 /**
- * _strlen - find the length of a string
- * @s: pointer to the string
- * Return: characters in the string
- */
-int _strlen(const char *s)
-{
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-		;
-	return (i);
-}
-
-/**
  * _occurence - return the number of occurence of a string
  * @s: string to check
  * Return: integer

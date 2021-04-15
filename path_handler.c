@@ -18,7 +18,7 @@ int get_path(char **args)
 		cmd_token = cmd_build(*args, token);
 		if (stat(cmd_token, &st) == 0)
 		{
-			*args = strdup(cmd_token);
+			*args = _strdup(cmd_token);
 			free(cmd_token);
 			free(path);
 			return (0);
@@ -55,7 +55,7 @@ char *get_env(char *path)
 					perror("Error: Insufficient memory");
 					exit(1);
 				}
-				strcpy(envcpy, environ[i] + (len + 1));
+				_strcpy(envcpy, environ[i] + (len + 1));
 				return (envcpy);
 			}
 		}
@@ -84,8 +84,8 @@ char *cmd_build(char *token, char *dir_value)
 	}
 	memset(path, 0, path_len);
 
-	path = strcat(path, dir_value);
-	path = strcat(path, "/");
-	path = strcat(path, token);
+	path = _strcat(path, dir_value);
+	path = _strcat(path, "/");
+	path = _strcat(path, token);
 	return (path);
 }

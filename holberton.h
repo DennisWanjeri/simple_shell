@@ -24,6 +24,7 @@ void _print(char *str);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /*helper functions*/
 int _strlen(const char *s);
+char *_strcpy(char *dest, char *src);
 int _execute(char **tokens, char *line);
 unsigned int _occurence(char *s);
 char **_strtotokens(char *str);
@@ -36,6 +37,8 @@ char *get_env(char *path);
 int builtin_parser(char **tokens);
 /*helper functions2*/
 int _strcmp(char *s1, char *s2);
+char *_strcat(char *dest, char *src);
+char *_strdup(char *str);
 char *read_line(void);
 void free_args(char **args);
 /*builtin implementation*/
