@@ -50,7 +50,7 @@ char *read_line(void)
 		if (index >= buffsize)
 		{
 			buffsize += 1024;
-			buffer = realloc(buffer, buffsize);
+			buffer = _realloc(buffer,1024, buffsize);
 			if (!buffer)
 			{dprintf(STDERR_FILENO, "error in memory allocation\n"), exit(98); }
 		}

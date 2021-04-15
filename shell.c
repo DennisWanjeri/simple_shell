@@ -23,7 +23,7 @@ int main(void)
 		}
 /*read input from stdin*/
 		line = read_line();
-		if (strcmp(line, "\n") == 0)
+		if (_strcmp(line, "\n") == 0)
 		{
 			continue;
 			free(line);
@@ -31,7 +31,7 @@ int main(void)
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
 /*handle exit invokation*/
-		if (strcmp(tokens[0], "exit") == 0)
+		if (_strcmp(tokens[0], "exit") == 0)
 		{
 			shell_exit(tokens, line);
 		}
