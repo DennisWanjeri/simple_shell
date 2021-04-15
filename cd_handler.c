@@ -28,14 +28,19 @@ char *_getcwd(void)
 int cd_home(void)
 {
 	char *cwd, *home;
+	size_t len = PATH_MAX;
 
 /*get the current working directory then set OLDPWD to its value*/
-	cwd = _getcwd();
-	_setenv("OLDPWD", cwd);
-	free(cwd);
+	cwd = malloc(sizeof(char) * len);
+	home = malloc(sizeof(char) * len);
+	if (cwd == NULL || home == NULL)
+	{
+		perror("malloc error->cd_home\n");
+	}
+	_setenv("OLDPWD", _getcwd());
 
 /*get the value of Home variable then change cwd to it*/
-	home = getenv("HOME");
+	home = get_env("HOME");
 	chdir("home");
 	free(home);
 /*set the cwd to the changed dir*/

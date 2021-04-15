@@ -20,7 +20,7 @@ void print_prompt(void)
  */
 char *ignore_space(char *str)
 {
-  while (*str == ' ')
-    str++;
-  return (str);
+	while (*str == ' ')
+		str++;
+	return (str);
 }

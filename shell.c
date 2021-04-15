@@ -42,7 +42,7 @@ int main(void)
 		}
 /*free memory*/
 		free(line);
-		/*free(tokens);*/
+		free(tokens);
 	} while (status == 1);
 	return (status);
 }

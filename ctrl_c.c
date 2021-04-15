@@ -8,5 +8,5 @@ void ctrl_c(int signum)
 {
 	(void)signum;
 	signal(SIGINT, ctrl_c);
-	write(STDIN_FILENO,"\n#cisfun$ ", 11);
+	write(STDIN_FILENO, "\n#cisfun$ ", 11);
 }

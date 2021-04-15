@@ -13,11 +13,10 @@ return (write(1, &c, 1));
 }
 
 /**
- * _puts - prints a string
+ * _print - prints a string
  * @str: pointer to the string to print
  * Return: void
  */
-
 void _print(char *str)
 {
 int i = 0;
