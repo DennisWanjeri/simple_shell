@@ -78,7 +78,7 @@ ls -l /tmp
 .I total 4
 .RE
 .RS
-.I drwx------ 2 
+.I -rw-r--r-- 1 root root 158 Apr 14 07:43 AUTHORS 
 .RE
 .sp
 To exit and return to your terminal:
