@@ -14,10 +14,14 @@ char *read_line(void)
 	if (!buffer)
 	{dprintf(STDERR_FILENO, "memory allocation error\n"), exit(98); }
 	cha = getchar();
-	if (cha == '\n' || cha == EOF)
+	if (cha == '\n')
 	{
 		*buffer = '\n';
 		return (buffer);
+	}
+	if (cha == EOF)
+	{
+		exit(EXIT_SUCCESS);
 	}
 	else
 		buffer[index] = cha;
@@ -30,6 +34,11 @@ char *read_line(void)
 /*handling End of File or EOF  where we replace it with nullbyte char*/
 		if (cha == '\n' || cha == EOF)
 		{
+			if (cha == '\n')
+			{
+				buffer[index] = cha;
+				index++;
+			}
 			buffer[index] = '\0';
 			return (buffer);
 		}

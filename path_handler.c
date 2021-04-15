@@ -74,7 +74,7 @@ char *cmd_build(char *token, char *dir_value)
 	size_t path_len;
 	char *path;
 
-	path_len = _strlen(token) + _strlen(dir_value);
+	path_len = _strlen(token) + _strlen(dir_value) + 2;
 	path = malloc(sizeof(char) * path_len);
 
 	if (path == NULL)

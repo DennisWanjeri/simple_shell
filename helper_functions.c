@@ -26,7 +26,7 @@ unsigned int _occurence(char *s)
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		/*test for all delimeters*/
-		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\a')
+		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\n')
 			cnt++;
 	}
 
@@ -60,7 +60,6 @@ char **_strtotokens(char *str)
 		i++;
 	}
 	tokens[i] = NULL;
-
 	return (tokens);
 }
 /**
@@ -111,7 +110,7 @@ int _execute(char **tokens, char *line)
 		{
 			perror("Error in execution");
 			free(line);
-			free(tokens);
+			free_args(tokens);
 			exit(EXIT_FAILURE);
 		}
 		return (EXIT_SUCCESS);
