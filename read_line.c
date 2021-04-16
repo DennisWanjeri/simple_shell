@@ -71,7 +71,6 @@ void free_args(char **args)
 	}
 	free(args);
 }
-include "holberton.h"
 /**
  *read_line - reads user's input from stdin
  *
@@ -82,10 +81,11 @@ char *read_line(void)
 	char *line = NULL;
 	size_t len = 0;
 
-	if (getline(&line, &len, stdin) == 0)
+	if (getline(&line, &len, stdin) == -1)
 	{
 		if (feof(stdin))
 		{
+			write(STDOUT_FILENO, "\n", 1);
 			free(line);
 			exit(EXIT_SUCCESS);
 		}

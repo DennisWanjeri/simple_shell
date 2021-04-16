@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc -g -Wall -Werror -Wextra -pedantic *.c -o hsh && valgrind --leak-check=full --show-leak-kinds=all ./hsh
+
+
