@@ -7,24 +7,11 @@
  */
 void print_prompt(void)
 {
-  if (isatty(STDIN_FILENO))
-    {
-      _print("#cisfun$ ");
-    }
+	if (isatty(STDIN_FILENO))
+	{
+		_print("#cisfun$ ");
+	}
 }
-
-/**
- *ignore_space - return a string without a space in front
- *@str: string
- *Return: new string without space
- */
-char *ignore_space(char *str)
-{
-  while (*str == ' ')
-    str++;
-  return (str);
-}
-
 /**
  *ctrl_c - suppresses quitting when Ctrl c is invoked
  *@signum:SIGINT variable
@@ -32,11 +19,10 @@ char *ignore_space(char *str)
  */
 void ctrl_c(int signum)
 {
-  (void)signum;
-  signal(SIGINT, ctrl_c);
-  write(STDIN_FILENO, "\n#cisfun$ ", 11);
+	(void)signum;
+	signal(SIGINT, ctrl_c);
+	write(STDIN_FILENO, "\n#cisfun$ ", 11);
 }
-
 /**
  *shell_exit - exits a shell,taking into account different exit statuses
  *@args:arguements passed

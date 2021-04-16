@@ -8,13 +8,13 @@
  */
 int shell_environ(void)
 {
-  int i = 0;
+	int i = 0;
 
-  for (i = 0; environ[i]; i++)
-    {
-      printf("%s\n", environ[i]);
-    }
-  return (1);
+	for (i = 0; environ[i]; i++)
+	{
+		printf("%s\n", environ[i]);
+	}
+	return (1);
 }
 
 /**
@@ -31,13 +31,13 @@ int _setenv(char *var_name, char *var_value)
 
 	name_len = _strlen(var_name);
 	i = 0;
-/*updating an existing variable*/
+	/*updating an existing variable*/
 	while (environ[i])
 	{
 		if (strncmp(environ[i], var_name, name_len) == 0)
 		{
 			var_new = var_build(var_name, var_value);
-/*Not sure but wanted to clear its mem b4 writing*/
+			/*Not sure but wanted to clear its mem b4 writing*/
 			environ[i] = NULL;
 			environ[i] = strdup(var_new);
 			free(environ[i]);
@@ -47,7 +47,7 @@ int _setenv(char *var_name, char *var_value)
 		}
 		i++;
 	}
-/*adding a variable that never existed before*/
+	/*adding a variable that never existed before*/
 	var_new = var_build(var_name, var_value);
 	free(environ[i]);
 	environ[i] = _strdup(var_new);
@@ -77,7 +77,7 @@ char *var_build(char *var_name, char *var_value)
 	}
 	memset(new_var, 0, var_len);
 
-/*Data in the form: var_name=var_value*/
+	/*Data in the form: var_name=var_value*/
 	new_var = _strcat(new_var, var_name);
 	new_var = _strcat(new_var, "=");
 	new_var = _strcat(new_var, var_value);
@@ -93,23 +93,23 @@ char *var_build(char *var_name, char *var_value)
  */
 int _unsetenv(char *var_name)
 {
-  int i = 0;
-  char **env_temp;
-  size_t name_len;
+	int i = 0;
+	char **env_temp;
+	size_t name_len;
 
-  name_len = _strlen(var_name);
-  while (environ[i])
-    {
-      if (strncmp(environ[i], var_name, name_len) == 0)
+	name_len = _strlen(var_name);
+	while (environ[i])
 	{
-	  env_temp = environ;
-	  free(env_temp[0]);
-	  do {
-	    env_temp[0] = env_temp[1];
-	    env_temp++;
-	  } while (*env_temp);
+		if (strncmp(environ[i], var_name, name_len) == 0)
+		{
+			env_temp = environ;
+			free(env_temp[0]);
+			do {
+				env_temp[0] = env_temp[1];
+				env_temp++;
+			} while (*env_temp);
+		}
+		i++;
 	}
-      i++;
-    }
-  return (0);
+	return (0);
 }
