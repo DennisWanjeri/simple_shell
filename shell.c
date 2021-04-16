@@ -19,7 +19,7 @@ int main(void)
 /*print prompt if command is not piped*/
 		print_prompt();
 /*read input from stdin*/
-		line = read_line2();
+		line = read_line();
 		if (_strcmp(line, "\n") == 0)
 		{
 			tokens = NULL;
