@@ -12,7 +12,7 @@ unsigned int _occurence(char *s)
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		/*test for all delimeters*/
-		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\n')
+		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\n')
 			cnt++;
 	}
 
@@ -26,7 +26,7 @@ unsigned int _occurence(char *s)
 char **_strtotokens(char *str)
 {
 	int i = 0;
-	const char separator[] = " \t\n\r\a";
+	const char separator[] = " \t\n";
 	int spaces = _occurence(str);
 	char **tokens = malloc(sizeof(char *) * (spaces + 1));
 	char *token;

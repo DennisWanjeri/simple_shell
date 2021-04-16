@@ -28,6 +28,12 @@ int main(void)
 		}
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
+		if (tokens[0] == NULL)
+		{
+			free(tokens);
+			free(line);
+			continue;
+		}
 /*handle exit invokation*/
 		if (_strcmp(tokens[0], "exit") == 0)
 		{

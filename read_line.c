@@ -23,15 +23,20 @@ char *read_line(void)
 {
 	char *line = NULL;
 	size_t len = 0;
+	int var = 0;
 
-	if (getline(&line, &len, stdin) == -1)
+	var = getline(&line, &len, stdin);
+	if (var == EOF)
 	{
-		if (isatty(0) == 1)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-		}
 		free(line);
-		exit(EXIT_SUCCESS);
+		exit(0);
 	}
+	if (line == NULL)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		free(line);
+		exit(-1);
+	}
+
 	return (line);
 }
