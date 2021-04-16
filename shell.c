@@ -17,10 +17,7 @@ int main(void)
 	status = 1;
 	do {
 /*print prompt if command is not piped*/
-		if (!S_ISFIFO(st.st_mode))
-		{
-			print_prompt();
-		}
+		print_prompt();
 /*read input from stdin*/
 		line = read_line2();
 		if (_strcmp(line, "\n") == 0)

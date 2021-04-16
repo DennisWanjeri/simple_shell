@@ -26,7 +26,7 @@ int get_path(char **args)
 		free(cmd_token);
 		token = strtok(NULL, ":");
 	}
-	path = NULL;
+	free(path);
 	return (1);
 }
 /**

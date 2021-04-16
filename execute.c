@@ -96,7 +96,7 @@ int _execute(char **tokens, char *line)
 		{
 			perror("Error in execution");
 			free(line);
-			free_args(tokens);
+			free(tokens);
 			exit(EXIT_FAILURE);
 		}
 		return (EXIT_SUCCESS);
