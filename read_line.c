@@ -28,7 +28,10 @@ char *read_line(void)
 	{
 		if (feof(stdin))
 		{
-			/*write(STDOUT_FILENO, "\n", 1);*/
+			if (isatty(0) == 1)
+			{
+				write(STDOUT_FILENO, "\n", 1);
+			}
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
