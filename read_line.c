@@ -26,17 +26,12 @@ char *read_line(void)
 
 	if (getline(&line, &len, stdin) == -1)
 	{
-		if (feof(stdin))
+		if (isatty(0) == 1)
 		{
-			if (isatty(0) == 1)
-			{
-				write(STDOUT_FILENO, "\n", 1);
-			}
-			free(line);
-			exit(EXIT_SUCCESS);
+			write(STDOUT_FILENO, "\n", 1);
 		}
 		free(line);
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	return (line);
 }

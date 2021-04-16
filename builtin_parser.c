@@ -8,7 +8,7 @@
 int builtin_parser(char **tokens)
 {
 /*cd handling*/
-	if (strncmp(*tokens, "cd", 2) == 0)
+	if (_strcmp(*tokens, "cd") == 0)
 	{
 		return (_cd(tokens));
 	}
