@@ -41,7 +41,7 @@ int _setenv(char *var_name, char *var_value)
 			environ[i] = NULL;
 			environ[i] = _strdup(var_new);
 			free(environ[i]);
-			environ[i] = strdup(var_new);
+			environ[i] = _strdup(var_new);
 			free(var_new);
 			return (0);
 		}

@@ -42,6 +42,10 @@ int builtin_parser(char **tokens)
 		printf("Usage: unsetenv VAR_NAME\n");
 		return (0);
 	}
+	else if (strcmp(*tokens, "history") == 0)
+	{
+		return (display_history());
+	}
 /*return 1 if no instance was handled*/
 	return (1);
 }
