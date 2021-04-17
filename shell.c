@@ -4,8 +4,9 @@
  *main - Displays a prompt and waits for the user to enter a command
  *Return: 0 on success
  */
-int main(void)
+int main(int argc, char *argv[])
 {
+	(void)argc;
 	char **tokens;
 	char *line;
 	int status;
@@ -26,8 +27,15 @@ int main(void)
 			free(line);
 			continue;
 		}
+		get_history(line);
 /*split the line into tokens*/
 		tokens = _strtotokens(line);
+		if (tokens[0] == NULL)
+		{
+			free(tokens);
+			free(line);
+			continue;
+		}
 /*handle exit invokation*/
 		if (_strcmp(tokens[0], "exit") == 0)
 		{
@@ -36,7 +44,7 @@ int main(void)
 		else
 		{
 /*execute commands*/
-			status = _execute(tokens, line);
+			status = _execute(tokens, line, argv[0]);
 		}
 /*free memory*/
 		free(line);

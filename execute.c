@@ -12,7 +12,7 @@ unsigned int _occurence(char *s)
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		/*test for all delimeters*/
-		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\n')
+		if (s[i]  == ' ' || s[i] == '\t' || s[i] == '\n')
 			cnt++;
 	}
 
@@ -26,7 +26,7 @@ unsigned int _occurence(char *s)
 char **_strtotokens(char *str)
 {
 	int i = 0;
-	const char separator[] = " \t\n\r\a";
+	const char separator[] = " \t\n";
 	int spaces = _occurence(str);
 	char **tokens = malloc(sizeof(char *) * (spaces + 1));
 	char *token;
@@ -67,8 +67,9 @@ int check_file_status(char *filename)
  *@line:line from stdin to free
  *Return:-1 (success), -1,otherwise
  */
-int _execute(char **tokens, char *line)
+int _execute(char **tokens, char *line, char *args)
 {
+	char *err1, *err2, *err3;
 	pid_t cpid;
 	int status;
 	struct stat st;
@@ -94,7 +95,13 @@ int _execute(char **tokens, char *line)
 		}
 		if (execve(tokens[0], tokens, NULL) == -1)
 		{
-			perror("Error in execution");
+			err1 = strcat(*tokens, ": No such file or directory\n");
+			err2 = strcat(args, ":");
+			err3 = strcat(err2, err1);
+			write(STDERR_FILENO, err3, _strlen(err3));
+			/*free(err1);*/
+			/*free(err2);*/
+			/*free(err3);*/
 			free(line);
 			free(tokens);
 			exit(EXIT_FAILURE);

@@ -9,11 +9,12 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <fcntl.h>
 
 #define PATH_MAX 1024
 extern char **environ;
 
-int main(void);
+int main(int argc, char *argv[]);
 
 /*used in _strings.c file*/
 char *_strcat(char *dest, char *src);
@@ -44,7 +45,7 @@ void shell_exit(char **args, char *line);
 unsigned int _occurence(char *s);
 char **_strtotokens(char *str);
 int check_file_status(char *filename);
-int _execute(char **tokens, char *line);
+int _execute(char **tokens, char *line, char *args);
 
 /*used in read_line.c file*/
 char *read_line2(void);
@@ -67,5 +68,7 @@ int _putchar(char c);
 void _print(char *str);
 
 int shell_help(char **args);
-
+/*history*/
+int get_history(char *input);
+int display_history(void);
 #endif /*HOLBERTON_H*/
